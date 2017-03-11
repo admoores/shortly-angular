@@ -64,4 +64,17 @@ describe('AuthController', function () {
     $httpBackend.flush();
     expect($window.localStorage.getItem('com.shortly')).to.equal(token);
   });
+
+  it('should not allow signin for empty fields', function () {
+
+  });
+
+  it('should not allow signup for empty fields', function () {
+
+  });
+
+  it('should not allow shortening of invalid links before sending to server', function () {
+
+  });
+
 });
