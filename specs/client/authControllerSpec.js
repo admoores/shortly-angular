@@ -65,16 +65,25 @@ describe('AuthController', function () {
     expect($window.localStorage.getItem('com.shortly')).to.equal(token);
   });
 
-  it('should not allow signin for empty fields', function () {
-
+  it('should have a validation method', function () {
+    expect($scope.isValid).to.be.a('function');
   });
 
-  it('should not allow signup for empty fields', function () {
+  it('should not allow signin / signup for empty fields', function () {
+    $scope.showError = false;
+    $scope.user = { username: '', password: 'password' };
+    $scope.isValid();
+    expect($scope.showError).to.equal(true);
 
-  });
+    $scope.showError = false;
+    $scope.user = { username: 'username', password: '' };
+    $scope.isValid();
+    expect($scope.showError).to.equal(true);
 
-  it('should not allow shortening of invalid links before sending to server', function () {
-
+    $scope.showError = false;
+    $scope.user = { username: 'username', password: 'password' };
+    $scope.isValid();
+    expect($scope.showError).to.equal(false);
   });
 
 });

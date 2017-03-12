@@ -5,33 +5,29 @@ angular.module('shortly.auth', [])
 
 .controller('AuthController', function ($scope, $window, $location, Auth) {
   $scope.user = {};
-  $scope.showError = true;
+  $scope.showError = false;
   $scope.inputError = 'Fields cannot be empty';
 
   $scope.signin = function () {
-    if (!$scope.showError) {
-      Auth.signin($scope.user)
-        .then(function (token) {
-          $window.localStorage.setItem('com.shortly', token);
-          $location.path('/links');
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    }
+    Auth.signin($scope.user)
+      .then(function (token) {
+        $window.localStorage.setItem('com.shortly', token);
+        $location.path('/links');
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
   $scope.signup = function () {
-    if (!$scope.showError) {
-      Auth.signup($scope.user)
-        .then(function (token) {
-          $window.localStorage.setItem('com.shortly', token);
-          $location.path('/links');
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    }
+    Auth.signup($scope.user)
+      .then(function (token) {
+        $window.localStorage.setItem('com.shortly', token);
+        $location.path('/links');
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
   $scope.isValid = function() {
